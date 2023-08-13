@@ -1,0 +1,12 @@
+.fontTitle{
+    color: #FFF;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    background: var(--title-blue);
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+}

@@ -1,0 +1,23 @@
+.background.dark {
+    background: radial-gradient(ellipse at left top, #001522 73.26%, #002336 73.26%, #002a42 81.47%, #0e354c 81.49%, #154f70 91.66%, #336b8c 91.67%, #4087b0 100%);
+}
+
+.background{
+    z-index: -1;
+    position: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(ellipse at left top, #0068B3 73.26%, #007BC1 73.26%, #007BC1 81.47%, #268FCA 81.49%, #268FCA 91.66%, #4DA3D4 91.67%, #4DA3D4 100%);
+}
+
+.main__header {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

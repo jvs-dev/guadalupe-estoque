@@ -1,0 +1,63 @@
+.main__addItem-background {
+    background: #0B5396;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10vh;
+}
+
+.addItem__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #086AC3;
+    padding: 20px;
+    border-radius: 10px;
+}
+.addItem__img {
+    display: none;
+}
+.form__addItem {
+    background: #fff;
+    height: 120px;
+    width: 230px;
+    color: var(--black);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.addItem__input {
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--black);
+    font-weight: 500;
+    border-radius: 10px;
+    border: 0px;
+    outline-width: 0px;
+    background: var(--white);
+    padding: 5px 10px;
+}
+.addItem__input::placeholder {
+    opacity: 0.7;
+}
+.addItem__btn {
+    background: var(--black);
+    color: var(--white);
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0px;
+    border: 0px;
+    outline-width: 0px;
+    margin-top: 15px;
+    border-radius: 10px;
+    width: 100%;
+}

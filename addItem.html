@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="src/styles/reset.css">
+  <link rel="stylesheet" href="src/styles/main.css">
+  <link rel="shortcut icon" href="assets/Logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="src/components/background/style.css">
+  <link rel="stylesheet" href="src/components/title/style.css">
+  <link rel="stylesheet" href="src/pages/index/style.css">
+  <link rel="stylesheet" href="src/components/side-bar/style.css">
+  <link rel="stylesheet" href="src/components/buttons/darkLight/style.css">
+  <link rel="stylesheet" href="src/components/forms/create-item/style.css">
+  <link rel="stylesheet" href="src/pages/add-item/style.css">
+  <link rel="stylesheet" href="src/components/cards/item-card/style.css">
+  <link rel="stylesheet" href="src/components/cards/task-card/style.css">
+  <link rel="stylesheet" href="src/pages/tasks/style.css">
+  <link rel="stylesheet" href="src/components/buttons/add-task/style.css">
+  <link rel="stylesheet" href="src/components/loaders/adding-item/style.css">
+  <title>Adicionar - MAKERITEMS</title>
+</head>
+
+<body>
+  <main id="main">
+    <div class="addingItem">
+      <div class="addingItem__loader">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+      </div>
+      <p class="addingItem__p">Adicionando item...</p>
+    </div>
+    <div class="tasks-background" id="taskBackground">
+      <section class="tasks-section">
+        <button type="button" class="tasks-section__close" id="closeTasks"><ion-icon name="close-outline"></ion-icon></button>
+        <h2 class="task-section__h2">Tarefas</h2>
+        <div class="task-section__div" id="tasksSection">
+          
+        </div>
+        <article class="tasks-section__createTask" id="createTask" style="display: none;">
+          <input type="text" class="createTask__input" id="taskText" placeholder="Descrição da taréfa">
+          <button class="createTask__btn" id="confirmCreate">Criar tarefa</button>
+        </article>
+        <button type="button" class="task-section__add-item" id="addTask"><ion-icon name="add-circle-outline"></ion-icon></button>
+      </section>
+    </div>
+    <div class="background"></div>
+    <header class="main__header">
+      <input type="checkbox" class="main__darkLight" id="darkLight" checked>
+      <div class="fontTitle">Adição de itens</div>
+    </header>
+    <nav class="main__nav nav--side-bar">
+      <div class="side-bar__div">
+        <a href="index.html" class="side-bar__icon"><i class="bi bi-box-seam"></i>Estoque</a>
+        <button class="side-bar__icon btn" id="showTasks"><i class="bi bi-clipboard-check"></i>Tarefas</button>
+        <a href="addItem.html" class="side-bar__icon"><ion-icon name="add-circle-outline"></ion-icon>Criar item</a>
+        <a href="" class="side-bar__icon"><ion-icon name="person-add-outline"></ion-icon>Criar conta</a>
+      </div>
+      <a href="" class="side-bar__icon"><i class="bi bi-box-arrow-left"></i>Sair</a>
+    </nav>
+    <div class="main__addItem-background">
+      <article class="addItem__preview-card item-card">
+        <div class="item-card__divImg">
+          <img class="item-card__img" src="assets/image-outline.svg" alt="" id="previewImg">
+        </div>
+        <p class="item-card__name" id="previewName">Nome do item</p>
+        <p class="item-card__quanty" id="previewQuanty">TOTAL: X unid.</p>
+        <div class="item-card__div">
+          <button class="item-card__btn" style="--clr: #132330;">-</button>
+          <button class="item-card__btn" style="--clr: #4684B5;">+</button>
+        </div>
+      </article>
+      <form action="" class="addItem__form">
+        <label for="setItemImg" class="form__addItem">
+          Clique ou arraste uma imagem.
+          <input type="file" class="addItem__img" id="setItemImg" name="setItemImg" accept="image/png, image/jpeg, image/jpg, image/webp"/>
+        </label>
+        <input type="text" placeholder="Nome do item" class="addItem__input" id="setItemName">
+        <input type="number" placeholder="Quantidade" class="addItem__input" id="setItemQuanty">
+        <button type="button" class="addItem__btn" id="createItem">Criar item</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script type="module" src="src/components/buttons/darkLight/script.js"></script>
+  <script type="module" src="src/pages/add-item/script.js"></script>
+  <script type="module" src="src/pages/tasks/script.js"></script>
+  <script type="module" src="src/components/buttons/add-task/script.js"></script>
+</body>
+
+</html>

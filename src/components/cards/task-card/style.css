@@ -1,0 +1,61 @@
+.taskCard {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0px;
+    border-bottom: solid 1px var(--black);
+}
+
+.taskCard__container {
+    cursor: pointer;
+}
+
+.taskCard__container input {
+    display: none;
+}
+
+.taskCard__container svg {
+    overflow: visible;
+}
+
+.path {
+    fill: none;
+    stroke: var(--black);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+}
+
+.taskCard__container input:checked~svg .path {
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
+}
+
+.taskCard__text {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0px 0px 0px 30px;
+    width: 100%;
+    transition: 0.2s;
+}
+
+.taskCard__delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.taskCard__delete:hover {
+    color: #f00;
+}
+
+article.taskCard:has(> button.taskCard__delete:hover) {
+    color: #f00;
+}

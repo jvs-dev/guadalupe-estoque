@@ -1,0 +1,29 @@
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+.addingItem {
+    background: #000000d3;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 4;
+    backdrop-filter: blur(10px);
+    transition: 0.2s;
+}
+.addingItem__p {
+    margin: 20px 0px 0px 0px;
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 500;
+}

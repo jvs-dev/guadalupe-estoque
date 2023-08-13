@@ -1,0 +1,13 @@
+:root {
+    --black: #1b1b1b;
+    --white: #fff;
+    --white-2: #e9e9e9;
+    --blue: #0068B3;
+    --title-blue: #0B5396;
+}
+.dark {
+    --title-blue: transparent;
+}
+body {
+    font-family: 'Inter', sans-serif;
+}

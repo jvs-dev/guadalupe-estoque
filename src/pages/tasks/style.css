@@ -1,0 +1,50 @@
+.tasks-background {
+    position: fixed;
+    z-index: 2;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #0000009c;
+    opacity: 0;
+    transition: 0.2s;
+}
+.tasks-background.active {
+    opacity: 1;
+}
+.tasks-section {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px;
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+    position: relative;
+}
+.task-section__h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 35px;
+    font-weight: 500;
+    margin: 0px 0px 25px 0px;
+}
+.task-section__div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.tasks-section__close {
+    background: transparent;
+    color: var(--black);
+    cursor: pointer;
+    border: 0px;
+    outline-width: 0px;
+    font-size: 34px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 20px 20px 0px 0px;
+}
