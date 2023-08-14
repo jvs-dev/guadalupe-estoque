@@ -1,6 +1,7 @@
 .main__cardsSection {
     display: flex;
     justify-content: space-evenly;
+    align-items: baseline;
     flex-wrap: wrap;
     width: 100%;
     padding: 0px 40px 0px 140px;
