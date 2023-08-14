@@ -14,7 +14,7 @@ import { getStorage, ref, uploadString, getDownloadURL } from "https://www.gstat
 const db = getFirestore(app);
 const auth = getAuth();
 const storage = getStorage(app);
-if (window.location.pathname == "/index.html") {
+if (window.location.pathname == "/index.html" || window.location.pathname == "/") {
   let main = document.getElementById("main")
   main.innerHTML = `<div class="tasks-background" id="taskBackground">
   <section class="tasks-section">
