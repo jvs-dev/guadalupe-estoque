@@ -49,89 +49,89 @@ if (window.location.pathname == "/index.html" || window.location.pathname == "/"
 </section>`
   let itemsSecion = document.getElementById("itemsSecion")
   let closeTasks = document.getElementById("closeTasks")
-let taskBackground = document.getElementById("taskBackground")
-let showTasks = document.getElementById("showTasks")
-let tasksSection = document.getElementById("tasksSection")
+  let taskBackground = document.getElementById("taskBackground")
+  let showTasks = document.getElementById("showTasks")
+  let tasksSection = document.getElementById("tasksSection")
 
-async function loadTasks() {
+  async function loadTasks() {
     tasksSection.innerHTML = ""
     let querySnapshot = await getDocs(collection(db, "tasks"));
     querySnapshot.forEach((doc) => {
-        let article = document.createElement("article")
-        let label = document.createElement("label")
-        let input = document.createElement("input")
-        let p = document.createElement("p")
-        let deleteTask = document.createElement("button")
-        tasksSection.insertAdjacentElement("beforeend", article)
-        article.classList.add("taskCard")
-        article.insertAdjacentElement("beforeend", label)
-        label.classList.add("taskCard__container")
-        label.innerHTML = `
+      let article = document.createElement("article")
+      let label = document.createElement("label")
+      let input = document.createElement("input")
+      let p = document.createElement("p")
+      let deleteTask = document.createElement("button")
+      tasksSection.insertAdjacentElement("beforeend", article)
+      article.classList.add("taskCard")
+      article.insertAdjacentElement("beforeend", label)
+      label.classList.add("taskCard__container")
+      label.innerHTML = `
         <svg viewBox="0 0 64 64" height="2em" width="2em">
             <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
         </svg>`
-        label.insertAdjacentElement("afterbegin", input)
-        input.type = "checkbox"
-        article.insertAdjacentElement("beforeend", p)
-        p.classList.add("taskCard__text")
-        p.textContent = `${doc.data().taskText}`
-        if (doc.data().resolved == true) {
-            p.style.textDecoration = "line-through"
-            input.checked = true
+      label.insertAdjacentElement("afterbegin", input)
+      input.type = "checkbox"
+      article.insertAdjacentElement("beforeend", p)
+      p.classList.add("taskCard__text")
+      p.textContent = `${doc.data().taskText}`
+      if (doc.data().resolved == true) {
+        p.style.textDecoration = "line-through"
+        input.checked = true
+      }
+      article.insertAdjacentElement("beforeend", deleteTask)
+      deleteTask.classList.add("taskCard__delete")
+      deleteTask.innerHTML = `<ion-icon name="trash-outline"></ion-icon>`
+      deleteTask.onclick = function () {
+        deleteTaskFct(doc.id)
+      }
+      input.onclick = function () {
+        if (p.style.textDecoration == "line-through") {
+          p.style.textDecoration = "none"
+          taskResolved(false, doc.id)
+        } else {
+          p.style.textDecoration = "line-through"
+          taskResolved(true, doc.id)
         }
-        article.insertAdjacentElement("beforeend", deleteTask)
-        deleteTask.classList.add("taskCard__delete")
-        deleteTask.innerHTML = `<ion-icon name="trash-outline"></ion-icon>`
-        deleteTask.onclick = function () {
-            deleteTaskFct(doc.id)
-        }
-        input.onclick = function () {
-            if (p.style.textDecoration == "line-through") {
-                p.style.textDecoration = "none"
-                taskResolved(false, doc.id)
-            } else {
-                p.style.textDecoration = "line-through"
-                taskResolved(true, doc.id)
-            }
-        }
+      }
     });
-}
+  }
 
 
-async function taskResolved(boolean, taskId) {
+  async function taskResolved(boolean, taskId) {
     let washingtonRef = doc(db, "tasks", `${taskId}`);
     if (boolean == true) {
-        await updateDoc(washingtonRef, {
-            resolved: true
-        });
+      await updateDoc(washingtonRef, {
+        resolved: true
+      });
     } else {
-        await updateDoc(washingtonRef, {
-            resolved: false
-        });
+      await updateDoc(washingtonRef, {
+        resolved: false
+      });
     }
-}
+  }
 
-async function deleteTaskFct(docId) {
+  async function deleteTaskFct(docId) {
     await deleteDoc(doc(db, "tasks", `${docId}`));
     tasksSection.innerHTML = ""
     loadTasks()
-}
+  }
 
-showTasks.onclick = function () {
+  showTasks.onclick = function () {
     taskBackground.style.display = "flex"
     setTimeout(() => {
-        taskBackground.classList.add("active")
+      taskBackground.classList.add("active")
     }, 1);
-}
+  }
 
-closeTasks.onclick = function () {
+  closeTasks.onclick = function () {
     taskBackground.classList.remove("active")
     setTimeout(() => {
-        taskBackground.style.display = "none"
+      taskBackground.style.display = "none"
     }, 200);
-}
+  }
 
-loadTasks()
+  loadTasks()
 
   async function loadItems() {
     let querySnapshot = await getDocs(collection(db, "items"));
@@ -267,85 +267,85 @@ if (window.location.pathname == "/addItem.html") {
   let taskBackground = document.getElementById("taskBackground")
   let showTasks = document.getElementById("showTasks")
   let tasksSection = document.getElementById("tasksSection")
-  
+
   async function loadTasks() {
-      tasksSection.innerHTML = ""
-      let querySnapshot = await getDocs(collection(db, "tasks"));
-      querySnapshot.forEach((doc) => {
-          let article = document.createElement("article")
-          let label = document.createElement("label")
-          let input = document.createElement("input")
-          let p = document.createElement("p")
-          let deleteTask = document.createElement("button")
-          tasksSection.insertAdjacentElement("beforeend", article)
-          article.classList.add("taskCard")
-          article.insertAdjacentElement("beforeend", label)
-          label.classList.add("taskCard__container")
-          label.innerHTML = `
+    tasksSection.innerHTML = ""
+    let querySnapshot = await getDocs(collection(db, "tasks"));
+    querySnapshot.forEach((doc) => {
+      let article = document.createElement("article")
+      let label = document.createElement("label")
+      let input = document.createElement("input")
+      let p = document.createElement("p")
+      let deleteTask = document.createElement("button")
+      tasksSection.insertAdjacentElement("beforeend", article)
+      article.classList.add("taskCard")
+      article.insertAdjacentElement("beforeend", label)
+      label.classList.add("taskCard__container")
+      label.innerHTML = `
           <svg viewBox="0 0 64 64" height="2em" width="2em">
               <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
           </svg>`
-          label.insertAdjacentElement("afterbegin", input)
-          input.type = "checkbox"
-          article.insertAdjacentElement("beforeend", p)
-          p.classList.add("taskCard__text")
-          p.textContent = `${doc.data().taskText}`
-          if (doc.data().resolved == true) {
-              p.style.textDecoration = "line-through"
-              input.checked = true
-          }
-          article.insertAdjacentElement("beforeend", deleteTask)
-          deleteTask.classList.add("taskCard__delete")
-          deleteTask.innerHTML = `<ion-icon name="trash-outline"></ion-icon>`
-          deleteTask.onclick = function () {
-              deleteTaskFct(doc.id)
-          }
-          input.onclick = function () {
-              if (p.style.textDecoration == "line-through") {
-                  p.style.textDecoration = "none"
-                  taskResolved(false, doc.id)
-              } else {
-                  p.style.textDecoration = "line-through"
-                  taskResolved(true, doc.id)
-              }
-          }
-      });
-  }
-  
-  
-  async function taskResolved(boolean, taskId) {
-      let washingtonRef = doc(db, "tasks", `${taskId}`);
-      if (boolean == true) {
-          await updateDoc(washingtonRef, {
-              resolved: true
-          });
-      } else {
-          await updateDoc(washingtonRef, {
-              resolved: false
-          });
+      label.insertAdjacentElement("afterbegin", input)
+      input.type = "checkbox"
+      article.insertAdjacentElement("beforeend", p)
+      p.classList.add("taskCard__text")
+      p.textContent = `${doc.data().taskText}`
+      if (doc.data().resolved == true) {
+        p.style.textDecoration = "line-through"
+        input.checked = true
       }
+      article.insertAdjacentElement("beforeend", deleteTask)
+      deleteTask.classList.add("taskCard__delete")
+      deleteTask.innerHTML = `<ion-icon name="trash-outline"></ion-icon>`
+      deleteTask.onclick = function () {
+        deleteTaskFct(doc.id)
+      }
+      input.onclick = function () {
+        if (p.style.textDecoration == "line-through") {
+          p.style.textDecoration = "none"
+          taskResolved(false, doc.id)
+        } else {
+          p.style.textDecoration = "line-through"
+          taskResolved(true, doc.id)
+        }
+      }
+    });
   }
-  
+
+
+  async function taskResolved(boolean, taskId) {
+    let washingtonRef = doc(db, "tasks", `${taskId}`);
+    if (boolean == true) {
+      await updateDoc(washingtonRef, {
+        resolved: true
+      });
+    } else {
+      await updateDoc(washingtonRef, {
+        resolved: false
+      });
+    }
+  }
+
   async function deleteTaskFct(docId) {
-      await deleteDoc(doc(db, "tasks", `${docId}`));
-      tasksSection.innerHTML = ""
-      loadTasks()
+    await deleteDoc(doc(db, "tasks", `${docId}`));
+    tasksSection.innerHTML = ""
+    loadTasks()
   }
-  
+
   showTasks.onclick = function () {
-      taskBackground.style.display = "flex"
-      setTimeout(() => {
-          taskBackground.classList.add("active")
-      }, 1);
+    taskBackground.style.display = "flex"
+    setTimeout(() => {
+      taskBackground.classList.add("active")
+    }, 1);
   }
-  
+
   closeTasks.onclick = function () {
-      taskBackground.classList.remove("active")
-      setTimeout(() => {
-          taskBackground.style.display = "none"
-      }, 200);
+    taskBackground.classList.remove("active")
+    setTimeout(() => {
+      taskBackground.style.display = "none"
+    }, 200);
   }
-  
+
   loadTasks()
 
 
@@ -430,4 +430,38 @@ if (window.location.pathname == "/addItem.html") {
     body.classList.add("dark")
     darkLight.checked = false
   }
+}
+
+if (window.location.pathname == "/login.html") {
+  let main = document.getElementById("main")
+  main.innerHTML = `<div class="main__div div--leftWindow">
+  <h1 class="leftWindow__title">MAKERITEMS</h1>
+  <p class="leftWindow__description">Organização e Tecnologia</p>
+  <img src="assets/4016257.jpg" alt="" class="leftWindow__img">
+  <ul class="leftWindow__ul">
+      <li class="leftWindow__li">Gerencie tarefas</li>
+      <li class="leftWindow__li">visualize seu estoque</li>
+  </ul>
+</div>
+<form action="" class="main__form">
+  <h2 class="form__h2">Log in</h2>
+  <label for="" class="form__label">
+      Email
+      <div class="form__label__div">
+          <ion-icon name="mail-outline"></ion-icon>
+          <input type="email" name="" id="" placeholder="Digite seu email">
+      </div>
+  </label>
+  <label for="" class="form__label">
+      Senha
+      <div class="form__label__div">
+          <i class="bi bi-lock"></i>
+          <input type="password" name="" id="" placeholder="Digite sua senha">
+          <ion-icon name="eye-outline" id="showPassword"></ion-icon>
+      </div>
+  </label>
+  <button type="button" class="form__btn">Entrar</button>
+  <p class="form__p">Esqueceu a senha?</p>
+</form>
+<p class="main__text">Todos os direitos - Free on GitHub</p>`
 }
