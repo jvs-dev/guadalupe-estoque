@@ -16,7 +16,7 @@ const auth = getAuth();
 const storage = getStorage(app);
 if (window.location.pathname == "/index.html") {
   let main = document.getElementById("main")
-  main.innerHTML=`<div class="tasks-background" id="taskBackground">
+  main.innerHTML = `<div class="tasks-background" id="taskBackground">
   <section class="tasks-section">
     <button type="button" class="tasks-section__close" id="closeTasks"><ion-icon name="close-outline"></ion-icon></button>
     <h2 class="task-section__h2">Tarefas</h2>
@@ -80,11 +80,41 @@ if (window.location.pathname == "/index.html") {
     });
   }
 
+  let darkLight = document.getElementById("darkLight")
+  let background = document.querySelector(".background")
+  let box = document.querySelector(".box")
+  let body = document.querySelector("body")
+
+  darkLight.onclick = function () {
+    if (background.classList.contains("dark") == false) {
+      background.classList.add("dark")
+      body.classList.add("dark")
+      localStorage.setItem("theme", "dark")
+    } else {
+      background.classList.remove("dark")
+      body.classList.remove("dark")
+      localStorage.setItem("theme", "light")
+    }
+  }
+
+  if (localStorage.theme == "dark") {
+    background.classList.add("dark")
+    body.classList.add("dark")
+    darkLight.checked = false
+  }
+
   loadItems()
 }
+
+
+
+
+
+
+
 if (window.location.pathname == "/addItem.html") {
   let main = document.getElementById("main")
-  main.innerHTML=`<div class="addingItem">
+  main.innerHTML = `<div class="addingItem">
   <div class="addingItem__loader">
     <div class="box1"></div>
     <div class="box2"></div>
@@ -153,62 +183,84 @@ if (window.location.pathname == "/addItem.html") {
 
 
   setItemName.addEventListener("input", () => {
-      if (setItemName.value != "") {
-          previewName.innerHTML = `${setItemName.value}`
-      } else {
-          previewName.innerHTML = `Nome do item`
-      }
+    if (setItemName.value != "") {
+      previewName.innerHTML = `${setItemName.value}`
+    } else {
+      previewName.innerHTML = `Nome do item`
+    }
   })
 
   setItemQuanty.addEventListener("input", () => {
-      if (setItemQuanty.value != "") {
-          previewQuanty.innerHTML = `TOTAL: ${setItemQuanty.value} unid.`
-      } else {
-          previewQuanty.innerHTML = `TOTAL: X unid.`
-      }
+    if (setItemQuanty.value != "") {
+      previewQuanty.innerHTML = `TOTAL: ${setItemQuanty.value} unid.`
+    } else {
+      previewQuanty.innerHTML = `TOTAL: X unid.`
+    }
   })
 
   setItemImg.addEventListener('change', function () {
-      let file = setItemImg.files[0];
-      if (file) {
-          let reader = new FileReader();
+    let file = setItemImg.files[0];
+    if (file) {
+      let reader = new FileReader();
 
-          reader.onload = function (e) {
-              previewImg.src = e.target.result;
-          };
+      reader.onload = function (e) {
+        previewImg.src = e.target.result;
+      };
 
-          reader.readAsDataURL(file);
-      }
+      reader.readAsDataURL(file);
+    }
   });
 
   createItem.onclick = function () {
-      if (setItemImg.files.length > 0 && setItemName.value != "" && setItemQuanty.value != "") {
-          addItem(previewImg.src, setItemName.value, setItemQuanty.value)
-      } else {
-          console.log("preencha tudo");
-      }
+    if (setItemImg.files.length > 0 && setItemName.value != "" && setItemQuanty.value != "") {
+      addItem(previewImg.src, setItemName.value, setItemQuanty.value)
+    } else {
+      console.log("preencha tudo");
+    }
   }
 
 
   async function addItem(itemImg, itemName, itemQuanty) {
-      let addingItem = document.querySelector(".addingItem")
-      addingItem.style.display = "flex"
+    let addingItem = document.querySelector(".addingItem")
+    addingItem.style.display = "flex"
+    setTimeout(() => {
+      addingItem.style.opacity = "1"
+    }, 1);
+    let docRef = await addDoc(collection(db, "items"), {
+      itemName: `${itemName}`,
+      itemQuanty: `${itemQuanty}`,
+    });
+    let itemsImagesRef = ref(storage, `items/${docRef.id}.jpg`);
+    let image = `${itemImg}`;
+    uploadString(itemsImagesRef, image, 'data_url').then((snapshot) => {
+      setItemName.value = ""
+      setItemQuanty.value = ""
+      addingItem.style.opacity = "0"
       setTimeout(() => {
-          addingItem.style.opacity = "1"
-      }, 1);
-      let docRef = await addDoc(collection(db, "items"), {
-          itemName: `${itemName}`,
-          itemQuanty: `${itemQuanty}`,
-      });
-      let itemsImagesRef = ref(storage, `items/${docRef.id}.jpg`);
-      let image = `${itemImg}`;
-      uploadString(itemsImagesRef, image, 'data_url').then((snapshot) => {
-          setItemName.value = ""
-          setItemQuanty.value = ""
-          addingItem.style.opacity = "0"
-          setTimeout(() => {
-              addingItem.style.display = "none"
-          }, 0);
-      });
+        addingItem.style.display = "none"
+      }, 0);
+    });
+  }
+  let darkLight = document.getElementById("darkLight")
+  let background = document.querySelector(".background")
+  let box = document.querySelector(".box")
+  let body = document.querySelector("body")
+
+  darkLight.onclick = function () {
+    if (background.classList.contains("dark") == false) {
+      background.classList.add("dark")
+      body.classList.add("dark")
+      localStorage.setItem("theme", "dark")
+    } else {
+      background.classList.remove("dark")
+      body.classList.remove("dark")
+      localStorage.setItem("theme", "light")
+    }
+  }
+
+  if (localStorage.theme == "dark") {
+    background.classList.add("dark")
+    body.classList.add("dark")
+    darkLight.checked = false
   }
 }
