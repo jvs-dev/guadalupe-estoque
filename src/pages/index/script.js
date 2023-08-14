@@ -434,7 +434,7 @@ if (window.location.pathname == "/addItem.html") {
 
 if (window.location.pathname == "/login.html") {
   let main = document.getElementById("main")
-  main.classList.add(login)
+  main.classList.add("login")
   main.innerHTML = `<div class="main__div div--leftWindow">
   <h1 class="leftWindow__title">MAKERITEMS</h1>
   <p class="leftWindow__description">Organização e Tecnologia</p>
