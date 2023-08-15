@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged, sendPasswordResetEmail, signOut } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, doc, getDoc, getDocs, setDoc, onSnapshot, query, where, updateDoc, arrayUnion, arrayRemove, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, getDoc, getDocs, setDoc, onSnapshot, query, where, updateDoc, arrayUnion, arrayRemove, serverTimestamp, deleteDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 import { getStorage, ref, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 const db = getFirestore(app);
 const auth = getAuth();
@@ -39,7 +39,7 @@ if (window.location.pathname == "/index.html" || window.location.pathname == "/"
   <div class="side-bar__div">
     <a href="index.html" class="side-bar__icon"><i class="bi bi-box-seam"></i>Estoque</a>
     <button class="side-bar__icon btn" id="showTasks"><i class="bi bi-clipboard-check"></i>Tarefas</button>
-    <a href="addItem.html" class="side-bar__icon"><ion-icon name="add-circle-outline"></ion-icon>Criar item</a>
+    <a href="addItem" class="side-bar__icon"><ion-icon name="add-circle-outline"></ion-icon>Criar item</a>
     <a href="" class="side-bar__icon"><ion-icon name="person-add-outline"></ion-icon>Criar conta</a>
   </div>
   <a href="" class="side-bar__icon"><i class="bi bi-box-arrow-left"></i>Sair</a>
@@ -196,7 +196,7 @@ if (window.location.pathname == "/index.html" || window.location.pathname == "/"
 
 
 
-if (window.location.pathname == "/addItem.html") {
+if (window.location.pathname == "/addItem") {
   let main = document.getElementById("main")
   main.innerHTML = `<div class="addingItem">
   <div class="addingItem__loader">
